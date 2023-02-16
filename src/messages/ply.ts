@@ -1,18 +1,16 @@
 import { MessageResponse, PlyActions } from '@/interfaces/message';
-
-
-interface LoginMessage {
-  username: string;
-  reconnectionToken: string;
-}
+import { LoginMessage } from '@/interfaces/ply-message';
+import { useCurrentUserStore } from '@/stores/current-user';
 
 export function handlePlyMessage(message: MessageResponse<PlyActions>){
   switch (message.action){
     case 'login':
+      loginService(message as MessageResponse<PlyActions, LoginMessage>)
       break;
   }
 }
 
-function handleLogin(message: MessageResponse<LoginMessage>){
-
+function loginService(message: MessageResponse<PlyActions, LoginMessage>){
+  const currentUserStore = useCurrentUserStore();
+  currentUserStore.login(message.data);
 }

@@ -6,17 +6,16 @@ import { useWebSocketClient } from '@/services/web-socket-client';
 
 const { connection } = useWebSocketClient();
 
-function handleMessage(message: MessageResponse<PlyActions>){
+function handleMessage(message: MessageResponse){
   switch (message.cx){
     case Context.PLY:
-      handlePlyMessage(message);
+      handlePlyMessage(message as MessageResponse<PlyActions>);
       break;
   }
 }
 function handleError(message: MessageError){
-
+  console.error(message);
 }
-
 
 connection.onmessage = (message) => {
   const data: MessageResponse | MessageError = JSON.parse(message.data);

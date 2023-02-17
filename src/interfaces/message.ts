@@ -3,6 +3,7 @@ import HttpStatusCode from '@/enums/http-status-code';
 import { MessageResponseStatus } from '@/enums/message-response-status';
 
 export type PlyActions = 'login' | 'reconnect';
+export type LobActions = 'update';
 
 export interface MessageResponse<A = unknown, T = unknown> {
   status: MessageResponseStatus.OK;

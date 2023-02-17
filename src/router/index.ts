@@ -16,6 +16,11 @@ const routes = [
         name: 'lobby',
         component: () => import('@/views/lobby/AppLobby.vue'),
       },
+      {
+        path: '/waiting',
+        name: 'lobby-waiting',
+        component: () => import('@/views/lobby/InLobby.vue'),
+      },
     ],
   },
 ];

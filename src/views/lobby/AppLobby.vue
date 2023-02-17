@@ -3,9 +3,26 @@
     <v-spacer />
     <v-col>
       <p>Hello {{ username }}</p>
-      <v-text-field v-model="form.invite" label="Lobbycode" />
-      <v-btn @click="onJoinLobby">Join Lobby</v-btn>
-      <v-btn @click="onCreateLobby">Create Lobby</v-btn>
+      <v-row align="center">
+        <v-col>
+          <v-text-field
+            v-model="form.invite"
+            density="comfortable"
+            hide-details
+            label="Lobbycode"
+            persistent-placeholder
+            variant="outlined"
+          />
+        </v-col>
+        <v-col>
+          <v-btn color="primary" variant="flat" @click="onJoinLobby">Join Lobby</v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-btn color="secondary" variant="flat" @click="onCreateLobby">Create Lobby</v-btn>
+        </v-col>
+      </v-row>
     </v-col>
     <v-spacer />
   </v-row>

@@ -4,12 +4,16 @@
 
 <script lang="ts" setup>
 
+import { reconnect } from '@/api/ply';
+import '@/messages';
 import { useWebSocketClient } from '@/services/web-socket-client';
-import "@/messages";
 
-const {connection} = useWebSocketClient();
+const { connection } = useWebSocketClient();
 
 connection.onopen = () => {
-  console.log('open Connection');
-}
+  const token = sessionStorage.getItem('reconnectionToken');
+  if (token) {
+    reconnect(token);
+  }
+};
 </script>

@@ -1,15 +1,21 @@
+import { Context } from '@/enums/context';
+import { PlyActions } from '@/interfaces/message';
 import { useWebSocketClient } from '@/services/web-socket-client';
 
-const cx = 'ply';
-const {connection} = useWebSocketClient();
+const { connection } = useWebSocketClient();
 
-function send(object: Object){
-  connection.send(JSON.stringify(object));
+function send(action: PlyActions, data: Record<string, unknown>) {
+  connection.send(JSON.stringify({ cx: Context.PLY, action, data }));
 }
 
-export function login(username: string){
+export function login(username: string) {
   const data = { username };
 
-  send({cx, action: 'login', data});
+  send('login', data);
 }
 
+export function reconnect(reconnectToken: string) {
+  const data = { reconnectToken };
+
+  send('reconnect', data);
+}

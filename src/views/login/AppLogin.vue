@@ -3,7 +3,7 @@
     <v-spacer />
     <v-col>
       <v-form @submit.prevent="onSubmit">
-        <v-text-field name="username" v-model="form.username"/>
+        <v-text-field v-model="form.username" label="Username" name="username" />
         <v-btn type="submit">Login</v-btn>
       </v-form>
     </v-col>
@@ -17,9 +17,9 @@ import { reactive } from 'vue';
 
 const form = reactive({
   username: '',
-})
+});
 
-function onSubmit(){
+function onSubmit() {
   login(form.username);
 }
 </script>
